@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recursive JSON to HTML Table</title>
+  <!-- <script type="module" src="lib/jtabular.js"></script> -->
+  <style>
+    table, th, td {
+      border: 1px solid black;
+/*      border-collapse: collapse;*/
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    table {
+      width: 100%;
+      margin: 10px 0;
+    }
+    .nested-table {
+/*      margin-left: 20px;*/
+    }
+  </style>
+</head>
+<body>
+  <h1>Test</h1>
+  <div id="table-container"></div>
+
+  <script type="module">
+    import jTabular from "./lib/jtabular.js";
+    import jsonData from './data/json.js';
+
+    // Example usage with deeply nested JSON
+    document.getElementById('table-container').appendChild(jTabular(jsonData));
+  </script>
+</body>
+</html>

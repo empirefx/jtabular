@@ -1,0 +1,15 @@
+{
+  "name": "jtabular",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "description": "JSON to HTML table",
+  "main": "vite.config.js",
+  "author": "efex",
+  "dependencies": {
+    "vite": "^5.4.2"
+  }
+}

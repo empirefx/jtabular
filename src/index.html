@@ -6,23 +6,157 @@
   <style>
     table, th, td {
       border: 1px solid black;
-/*      border-collapse: collapse;*/
+      border-collapse: collapse;
     }
     th, td {
       padding: 8px;
       text-align: left;
+/*      max-height: 100px;*/
+/*      overflow-y: scroll;*/
+    }
+    tr {
+/*      width: 100%;*/
     }
     table {
-      width: 100%;
+/*      width: 100%;*/
       margin: 10px 0;
     }
     .nested-table {
+/*      white-space: pre-wrap; /* Preserve whitespace for better readability */*/
 /*      margin-left: 20px;*/
     }
   </style>
 </head>
 <body>
+<table>
+  <tbody>
+    <tr>
+      <th>id</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td>asdasd</td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <table class="nested-table">
+          <thead>
+            <tr>
+              <th>resources</th>
+              <th>buildings</th>
+              <th>production</th>
+              <th>actions</th>
+              <th>connections</th>
+            </tr>
+          </thead>
+          <tbody>
+            <td>
+        <table class="nested-table">
+          <thead>
+            <tr>
+              <th>type</th>
+              <th>qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>population</td>
+              <td>1233</td>
+            </tr>
+            <tr>
+              <td>goods</td>
+              <td>333</td>
+            </tr>
+            <tr>
+              <td>soldiers</td>
+              <td>21212</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table class="nested-table">
+          <thead>
+            <tr>
+              <th>type</th>
+              <th>qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>armory</td>
+              <td>111</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table class="nested-table">
+          <thead>
+            <tr>
+              <th>type</th>
+              <th>qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>researchPointsPerHour</td>
+              <td>23233</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table class="nested-table">
+          <thead>
+            <tr>
+              <th>type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>buildWonder</td>
+            </tr>
+            <tr>
+              <td>trainSoldiers</td>
+            </tr>
+            <tr>
+              <td>stockpileWeapons</td>
+            </tr>
+            <tr>
+              <td>startResearch</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table class="nested-table">
+          <thead>
+            <tr>
+              <th>0</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>9</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+          </tbody>
+        </table>    
+      </td>
+    </tr>
+  </tbody>
+</table>
+
   <h1>Test</h1>
+  <p>Testing JSON file (src/data/json.js)</p>
   <div id="table-container"></div>
 
   <script type="module">
@@ -30,7 +164,9 @@
     import jsonData from './data/json.js';
 
     // Example usage with deeply nested JSON
-    document.getElementById('table-container').appendChild(jTabular(jsonData));
+    document.getElementById('table-container').appendChild(jTabular(jsonData[0], 'vertical'));
+    document.getElementById('table-container').appendChild(jTabular(jsonData[1]));
+    document.getElementById('table-container').appendChild(jTabular(jsonData[2], 'vertical'));
   </script>
 </body>
 </html>

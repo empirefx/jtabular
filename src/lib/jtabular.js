@@ -1,4 +1,4 @@
-const jTabular = (jsonData) => {
+const jTabular = (jsonData, view = 'horizontal', compact = []) => {
   const createTableFromData = (data, level = 0) => {
     if (!Array.isArray(data)) data = [data];
 
@@ -32,28 +32,55 @@ const jTabular = (jsonData) => {
 
     data.forEach(item => parseRow(item));
 
-        // Create table headers
-    const headerRow = document.createElement('tr');
-    headers.forEach(header => {
-      const th = document.createElement('th');
-      th.textContent = header;
-      headerRow.appendChild(th);
-    });
-    thead.appendChild(headerRow);
-
-        // Create table rows
-    rows.forEach(row => {
-      const tr = document.createElement('tr');
+    const createVerticalView = () => {
+      // Create table headers
       headers.forEach(header => {
-        const td = document.createElement('td');
-        td.innerHTML = row[header] ?? '';
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    });
+      const headerRow = document.createElement('tr');
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+     
+        // Create table rows
+        rows.forEach(row => {
+          const td = document.createElement('td');
+          td.innerHTML = row[header] ?? '';
+          headerRow.appendChild(td);
+        });
 
-    table.appendChild(thead);
-    table.appendChild(tbody);
+        table.appendChild(headerRow);
+      });
+    };
+    
+    const createHorizontalView = () => {
+      // Create table headers
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+
+      // Create table rows
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        headers.forEach(header => {
+          const td = document.createElement('td');
+          td.innerHTML = row[header] ?? '';
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(thead);
+      table.appendChild(tbody);
+    };
+
+    if (view === 'vertical') {
+      createVerticalView();
+    }else if(view === 'horizontal') {
+      createHorizontalView();
+    }
 
     return table;
   };

@@ -34,6 +34,25 @@ const jTabular = (jsonData, view = 'horizontal', compact = []) => {
 
     const createVerticalView = () => {
       // Create table headers
+      headers.forEach(header => {
+      const headerRow = document.createElement('tr');
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+     
+        // Create table rows
+        rows.forEach(row => {
+          const td = document.createElement('td');
+          td.innerHTML = row[header] ?? '';
+          headerRow.appendChild(td);
+        });
+
+        table.appendChild(headerRow);
+      });
+    };
+    
+    const createHorizontalView = () => {
+      // Create table headers
       const headerRow = document.createElement('tr');
       headers.forEach(header => {
         const th = document.createElement('th');
@@ -55,25 +74,6 @@ const jTabular = (jsonData, view = 'horizontal', compact = []) => {
 
       table.appendChild(thead);
       table.appendChild(tbody);
-    };
-    
-    const createHorizontalView = () => {
-      // Create table headers
-      headers.forEach(header => {
-      const headerRow = document.createElement('tr');
-        const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
-     
-        // Create table rows
-        rows.forEach(row => {
-          const td = document.createElement('td');
-          td.innerHTML = row[header] ?? '';
-          headerRow.appendChild(td);
-        });
-
-        table.appendChild(headerRow);
-      });
     };
 
     if (view === 'vertical') {

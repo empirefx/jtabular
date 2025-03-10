@@ -20,6 +20,7 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
           if (Array.isArray(value)) {
             const arrayTable = createTableFromData(value, currentDeep + 1);
             const td = document.createElement('td');
+
             td.appendChild(arrayTable);
             row[key] = td.outerHTML;
           }
@@ -52,23 +53,26 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
     const createVerticalView = (mix = false) => {
       // Create table headers
       headers.forEach(header => {
-      if(compact.includes(header)) return; // skip selected tables for mix later on
+        if(compact.includes(header)) return; // skip selected tables for mix later on
 
-      const headerRow = document.createElement('tr');
+        const headerRow = document.createElement('tr');
         const th = document.createElement('th');
+
         th.textContent = header;
+
         headerRow.appendChild(th);
      
         // Create table rows
         rows.forEach(row => {
           const td = document.createElement('td');
+
           td.innerHTML = row[header] ?? '';
+
           headerRow.appendChild(td);
         });
 
         // delete headers as they get append so wont re append to mixed-table
         headers.delete(header);
-        
         table.appendChild(headerRow);
       });
     };
@@ -79,9 +83,10 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
 
       headers.forEach(header => {
         const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
 
+        th.textContent = header;
+
+        headerRow.appendChild(th);
         thead.appendChild(headerRow);
       });
 
@@ -91,10 +96,14 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
 
         headers.forEach(header => {
           const td = document.createElement('td');
-          
+
+          // Set mix tables at top
+          if (mix || String(row[header]).match("nested-table")) td.setAttribute('valign', 'top');
           td.innerHTML = row[header] ?? '';
+
           tr.appendChild(td);
         });
+
         tbody.appendChild(tr);
       });
 
@@ -102,7 +111,6 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
         mixTable.appendChild(thead);
         mixTable.appendChild(tbody);
       }else{
-
         table.appendChild(thead);
         table.appendChild(tbody);
       }

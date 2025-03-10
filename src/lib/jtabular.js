@@ -41,7 +41,7 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
     const mtr = document.createElement('tr');
 
     mixTable.classList.add('mix-table');
-    mtd.setAttribute('colspan', jsonData.length + 1); // take space left
+    mtd.setAttribute('colspan', headers.size + 1); // take space left
 
     const mixTableView = () => {
       createHorizontalView(true); // Ensure nested tables use horizontal view
@@ -99,6 +99,7 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
 
           // Set mix tables at top
           if (mix || String(row[header]).match("nested-table")) td.setAttribute('valign', 'top');
+          if (mix || String(row[header])
           td.innerHTML = row[header] ?? '';
 
           tr.appendChild(td);

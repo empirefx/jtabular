@@ -98,8 +98,8 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
           const td = document.createElement('td');
 
           // Set mix tables at top
-          if (mix || String(row[header]).match("nested-table")) td.setAttribute('valign', 'top');
           if (mix || String(row[header])
+            .match("nested-table")) td.setAttribute('valign', 'top');
           td.innerHTML = row[header] ?? '';
 
           tr.appendChild(td);

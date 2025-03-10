@@ -10,6 +10,7 @@
     th, td {
       padding: 8px;
       text-align: left;
+
 /*      max-height: 100px;*/
 /*      overflow-y: scroll;*/
     }
@@ -21,7 +22,7 @@
       margin: 10px 0;
     }
     .nested-table {
-/*      white-space: pre-wrap; /* Preserve whitespace for better readability */*/
+/*      white-space: pre-wrap; /* Preserve whitespace for better readability */
 /*      margin-left: 20px;*/
     }
   </style>
@@ -29,13 +30,15 @@
 <body>
   <h1>Test</h1>
   <p>Testing JSON file (src/data/json.js)</p>
-  <div id="table-container"></div>
+  <div id="table-container-hor"></div>
+  <div id="table-container-ver"></div>
 
   <script type="module">
-    import jTabular from "./lib/jtabular.js";
-    import jsonData from './data/json.js';
+    import jTabular from '../src/lib/jtabular.js';
+    import jsonData from '../src/data/json.js';
 
-    document.getElementById('table-container').appendChild(jTabular(jsonData[0], 'vertical', ['buildings', 'production', 'actions'], ['connections']));
+    document.getElementById('table-container-hor').appendChild(jTabular(jsonData[0], 'horizontal', ['buildings', 'production', 'actions'], ['connections']));
+    document.getElementById('table-container-ver').appendChild(jTabular(jsonData[0], 'vertical', ['buildings', 'production', 'actions'], ['connections']));
   </script>
 </body>
 </html>

@@ -24,6 +24,7 @@ const jTabular = (jsonData, view = 'horizontal', compact = [], skip = []) => {
             td.appendChild(arrayTable);
             row[key] = td.outerHTML;
           }
+
           headers.add(key);
         } else {
           row[key] = value;

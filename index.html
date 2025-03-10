@@ -34,8 +34,8 @@
   <div id="table-container-ver"></div>
 
   <script type="module">
-    import jTabular from '../src/lib/jtabular.js';
-    import jsonData from '../src/data/json.js';
+    import jTabular from './src/lib/jtabular.js';
+    import jsonData from './src/data/json.js';
 
     document.getElementById('table-container-hor').appendChild(jTabular(jsonData[0], 'horizontal', ['buildings', 'production', 'actions'], ['connections']));
     document.getElementById('table-container-ver').appendChild(jTabular(jsonData[0], 'vertical', ['buildings', 'production', 'actions'], ['connections']));
